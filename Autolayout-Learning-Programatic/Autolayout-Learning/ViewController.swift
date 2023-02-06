@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let label = UILabel(frame: CGRect(x: 50, y: 50, width: 200, height: 44))
+    private let label = UILabel()
     private let button = UIButton()
     private let textField = UITextField()
 
@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         configureViews()
+        configureConstraints()
     }
 
     func addSubviews() {
@@ -25,15 +26,16 @@ class ViewController: UIViewController {
     }
 
     func configureConstraints() {
+        label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.leftAnchor.constraint(equalTo: view.leftAnchor),
-            label.rightAnchor.constraint(equalTo: view.rightAnchor),
+            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
+            label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
         ])
     }
 
     func configureViews() {
-        label.text = "Welcome to iOS Learning series"
+        label.text = "Welcome to iOS Learning"
         button.setTitle("Update label", for: .normal)
         textField.placeholder = "New text"
     }
